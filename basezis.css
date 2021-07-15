@@ -1,0 +1,127 @@
+body a:link, body a:visited {text-decoration:none}
+
+/* dark */
+.modedark{z-index:99999;}
+.modedark svg{width:24px;height:24px;vertical-align:-5px;background-repeat:no-repeat!important;content:&#39;&#39;;}
+.modedark svg path{fill:#fff;}
+.iconmode{cursor:pointer;display:block;padding:8px;background-position:center;transition:all .5s linear;}
+.iconmode:hover{border-radius:100px;}
+.check{display:none;}
+.modedark .iconmode .openmode{display:block;}
+.modedark .iconmode .closemode{display:none;}
+.modedark .check:checked ~ .iconmode .openmode{display:none;}
+.modedark .check:checked ~ .iconmode .closemode{display:block;}
+.Night{background:#303443;color:#fff;}
+.Night .card-header {Background: #303443; color:#fff; border-bottom:1px solid #fefefe}
+.Night .card-body, .Night .card-text {Background: #303443; color:#fff}
+.Night .breadcrumbs a, .Night .breadcrumbs a:hover, .Night .breadcrumbs a:link, .Night .breadcrumbs a:visited, .Night table, .Night .zis-totop, .Night .zis-totop a, .Night .zis-totop a:link, .Night #zisRelated ul li a.judul, .Night body a, .Night body a:link, .Night body a:visited, .Night #blog-pager-newer-link a, .Night #blog-pager-older-link a{color:#fff;}
+.Night #blog-pager-newer-link a:hover, #blog-pager-older-link a:hover{font-weight:bold;color:#fff!important;}
+.Night #zisRelated h3.title span{color:#303443;}
+.Night ul.recent-posts-container li:before {content: counter(countposts,decimal);counter-increment: countposts;z-index: 1;position:absolute; left: 15px; font-size: 16px;color: #fff;background: #4a4d59;padding: 9px 14px; border: 1px solid #fff;}
+.Night .recent-posts-container a:hover{color: #fff; font-weight:bold}
+.Night .recent-post-title a {font-size: 16px; text-transform: uppercase; color: #fff;}
+.Night .zis-sitemap a{color:#fff; text-decoration:none;}
+.Night .zis-sitemap p .rak_info_Label{background:#fff;color:#303443;}
+.Night .zis-sitemap ol li{background:#303443;color:#fff;}
+.Night .accordion-item, .Night .accordion-header, .Night .accordion-body{Background: #303443; color:#fff;}
+  
+/* Nav Menu */
+@import url(&#39;https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&amp;display=swap&#39;);
+nav{Position:fixed;top:0;z-index:9999;width:100%;background:#171c24;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;height:70px;padding:0 100px;font-family:&#39;Montserrat&#39;,sans-serif;}
+nav .logo{color:#fff;font-size:30px;font-weight:600;letter-spacing:-1px}
+nav .nav-items{display:flex;flex:1;padding:0 0 0 40px}
+nav .nav-items li{list-style:none;padding:0 15px}
+nav .nav-items li a{color:#fff;font-size:18px;font-weight:500;}
+nav .nav-items li a:hover{color:#ff3d00}
+nav form{display:flex;height:40px;padding:2px;background:#1e232b;min-width:18%!important;border-radius:2px;border:1px solid rgba(155,155,155,0.2)}
+nav form .search-data{width:100%;height:100%;padding:0 10px;color:#fff;font-size:17px;border:none;font-weight:500;background:none}
+nav form button{padding:0 15px;color:#fff;font-size:17px;background:#ed3237;border:none;border-radius:2px;cursor:pointer}
+nav form button:hover{background:#e63600}
+nav .menu-icon,nav .cancel-icon,nav .search-icon{width:40px;text-align:center;margin:0 50px;font-size:18px;color:#fff;cursor:pointer;display:none}
+nav .menu-icon span,nav .cancel-icon,nav .search-icon{display:none}
+@media (max-width: 1245px) {
+nav{padding:0 50px}
+}
+@media (max-width: 1140px) {
+nav{padding:0}
+nav .logo{flex:2;text-align:center}
+nav .nav-items{position:fixed;z-index:9999;top:70px;width:100%;left:-100%;height:100%;padding:10px 50px 0;text-align:left;background:#14181f;display:inline-block;transition:left .3s ease}
+nav .nav-items.active{left:0}
+nav .nav-items li{line-height:30px;margin:30px 0}
+nav .nav-items li a{font-size:20px}
+nav form{position:absolute;top:80px;right:50px;opacity:0;pointer-events:none;transition:top .3s ease,opacity .1s ease}
+nav form.active{top:95px;opacity:1;pointer-events:auto}
+nav form:before{position:absolute;content:&quot;&quot;;top:-13px;right:0;width:0;height:0;z-index:-1;border:10px solid transparent;border-bottom-color:#1e232b;margin:-20px 0 0}
+nav form:after{position:absolute;content:&#39;&#39;;height:60px;padding:2px;background:#1e232b;border-radius:2px;min-width:calc(100% + 20px);z-index:-2;left:50%;top:50%;transform:translate(-50%,-50%)}
+nav .menu-icon{display:block}
+nav .search-icon,nav .menu-icon span{display:block}
+nav .menu-icon span.hide,nav .search-icon.hide{display:none}
+nav .cancel-icon.show{display:block}
+}
+.content{position:absolute;top:50%;left:50%;text-align:center;transform:translate(-50%,-50%)}
+.content header{font-size:30px;font-weight:700}
+.content .text{font-size:30px;font-weight:700}
+.space{margin:10px 0}
+nav .logo.space{color:red;padding:0 5px 0 0}
+@media (max-width: 980px) {
+nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 20px}
+nav form{right:30px}
+}
+@media (max-width: 350px) {
+nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 10px;font-size:16px}
+}
+.content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.content header{font-size:30px;font-weight:700}
+.content .text{font-size:30px;font-weight:700}
+.content .space{margin:10px 0}
+
+/* Breadcrumb and others */
+.breadcrumbs {border-bottom:1px solid #dfdfdf}
+.breadcrumbs a, .breadcrumbs a:hover, .breadcrumbs a:link, .breadcrumbs a:visited {color:#000}
+.zisblock {padding:10px;margin:1em 20px;background-position:bottom right;border:1px solid #603;border-left:20px solid #603;text-align:Left}
+.zisblock p{margin:.75em 5}
+#comments {display:none}
+#aturzis{margin:80px 0 5px 0}
+.search-result {padding: 0px 0px 20px 0px;}
+.link-snippet {font-size: 13px;color: #09a000;}
+.item-snippet {font-size: 13px;}
+.search-result a {color: #1a0dabf;font-size:18px;}
+.search-result a:hover {color:#1a0dab;}
+.search-result a:visited {color:#7e1a8b;}
+
+/* Related Post */
+#zisRelated{display:block;margin:20px 0;line-height:1.5em}
+#zisRelated h3.title{font-size:16px;font-weight:600;text-align:center;text-transform:uppercase;line-height:initial}
+#zisRelated h3.title span{background-color:#fff;padding:0 15px;position:relative;z-index:1}
+#zisRelated h3.title:before{content:&#39;&#39;;display:block;position:relative;top:10px;width:100%;border-top:2px solid #ccc}
+#zisRelated ul{margin:20px 0 0;padding:0;display:flex;display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap}
+#zisRelated ul li{list-style:none;width:calc((100% / 3) - 15px);text-align:center;margin-right:20px;margin-bottom:20px;padding:0;-webkit-margin-start:0!important}
+#zisRelated ul li .thumb{overflow:hidden;line-height:0;border-radius:7px}
+#zisRelated ul li:nth-of-type(3n){margin-right:0}
+#zisRelated ul li a{display:block}
+#zisRelated ul li a.judul{color:#000;font-weight:400;margin-top:7px;}
+#zisRelated ul li a.judul:hover,#zisRelated ul li:hover a.judul{font-weight:bold}
+#zisRelated ul li a img{width:100%;max-height:143px;transition:all .3s ease;border:0;margin:0}
+#zisRelated ul li a img:hover,#zisRelated ul li:hover img{transform:scale(1.1) rotate(-5deg);filter:brightness(75%);-webkit-filter:brightness(75%)}
+#zisRelated .norelated{text-align:center;font-weight:600}
+@media screen and (max-width:480px) {
+#zisRelated ul li{width:calc((100% / 2) - 7.5px);margin-right:15px;margin-bottom:15px}
+#zisRelated ul li:nth-of-type(3n){margin-right:15px}
+#zisRelated ul li:nth-of-type(2n){margin-right:0}
+}
+
+/*Syntax Highlighter*/
+pre{padding:.8em 1em;margin:0.5em 0;background-color:#000;border:1px solid #ddd;font-size:13px;color:#fff;font-family:Consolas,Monaco,&#39;Andale Mono&#39;,&#39;Courier New&#39;,Courier,Monospace;line-height:1.4em;position:relative;white-space:pre-wrap;word-wrap:break-word;overflow:auto;max-height:200px}
+code{font-family:Consolas,&quot;Andale Mono WT&quot;,&quot;Andale Mono&quot;,&quot;Lucida Console&quot;,&quot;Lucida Sans Typewriter&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Liberation Mono&quot;,&quot;Nimbus Mono L&quot;,Monaco,&quot;Courier New&quot;,Courier,Monospace;font-size:13px;color:#d14}
+pre code{padding:0!important;color:#839496;background:none!important;border:none!important;display:block}
+pre .comment,pre .template_comment,pre .diff .header,pre .doctype,pre .pi,pre .lisp .string,pre .javadoc{color:#93a1a1;font-style:italic}
+pre .keyword,pre .winutils,pre .method,pre .addition,pre .css .tag,pre .request,pre .status,pre .nginx .title{color:#F5821E}
+pre .number,pre .command,pre .string,pre .tag .value,pre .rules .value,pre .phpdoc,pre .tex .formula,pre .regexp,pre .hexcolor{color:#008800}
+pre .title,pre .localvars,pre .chunk,pre .decorator,pre .built_in,pre .identifier,pre .vhdl .literal,pre .id,pre .css .function{color:#268bd2}
+pre .attribute,pre .variable,pre .lisp .body,pre .smalltalk .number,pre .constant,pre .class .title,pre .parent,pre .haskell .type{color:#A2886F}
+pre .preprocessor,pre .preprocessor .keyword,pre .shebang,pre .symbol,pre .symbol .string,pre .diff .change,pre .special,pre .attr_selector,pre .important,pre .subst,pre .cdata,pre .clojure .title,pre .css .pseudo{color:#000;font-weight:bold}
+pre .deletion{color:#dc322f}
+pre .tex .formula{background:#eee8d5}
+
+/* to top */
+.zis-totop {cursor:pointer;}
