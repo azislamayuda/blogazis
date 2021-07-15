@@ -89,27 +89,6 @@ nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 10px;font-size:16px}
 .search-result a:hover {color:#1a0dab;}
 .search-result a:visited {color:#7e1a8b;}
 
-/* Related Post */
-#zisRelated{display:block;margin:20px 0;line-height:1.5em}
-#zisRelated h3.title{font-size:16px;font-weight:600;text-align:center;text-transform:uppercase;line-height:initial}
-#zisRelated h3.title span{background-color:#fff;padding:0 15px;position:relative;z-index:1}
-#zisRelated h3.title:before{content:&#39;&#39;;display:block;position:relative;top:10px;width:100%;border-top:2px solid #ccc}
-#zisRelated ul{margin:20px 0 0;padding:0;display:flex;display:-webkit-flex;flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap}
-#zisRelated ul li{list-style:none;width:calc((100% / 3) - 15px);text-align:center;margin-right:20px;margin-bottom:20px;padding:0;-webkit-margin-start:0!important}
-#zisRelated ul li .thumb{overflow:hidden;line-height:0;border-radius:7px}
-#zisRelated ul li:nth-of-type(3n){margin-right:0}
-#zisRelated ul li a{display:block}
-#zisRelated ul li a.judul{color:#000;font-weight:400;margin-top:7px;}
-#zisRelated ul li a.judul:hover,#zisRelated ul li:hover a.judul{font-weight:bold}
-#zisRelated ul li a img{width:100%;max-height:143px;transition:all .3s ease;border:0;margin:0}
-#zisRelated ul li a img:hover,#zisRelated ul li:hover img{transform:scale(1.1) rotate(-5deg);filter:brightness(75%);-webkit-filter:brightness(75%)}
-#zisRelated .norelated{text-align:center;font-weight:600}
-@media screen and (max-width:480px) {
-#zisRelated ul li{width:calc((100% / 2) - 7.5px);margin-right:15px;margin-bottom:15px}
-#zisRelated ul li:nth-of-type(3n){margin-right:15px}
-#zisRelated ul li:nth-of-type(2n){margin-right:0}
-}
-
 /*Syntax Highlighter*/
 pre{padding:.8em 1em;margin:0.5em 0;background-color:#000;border:1px solid #ddd;font-size:13px;color:#fff;font-family:Consolas,Monaco,&#39;Andale Mono&#39;,&#39;Courier New&#39;,Courier,Monospace;line-height:1.4em;position:relative;white-space:pre-wrap;word-wrap:break-word;overflow:auto;max-height:200px}
 code{font-family:Consolas,&quot;Andale Mono WT&quot;,&quot;Andale Mono&quot;,&quot;Lucida Console&quot;,&quot;Lucida Sans Typewriter&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Liberation Mono&quot;,&quot;Nimbus Mono L&quot;,Monaco,&quot;Courier New&quot;,Courier,Monospace;font-size:13px;color:#d14}
