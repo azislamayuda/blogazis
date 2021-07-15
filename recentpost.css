@@ -1,0 +1,11 @@
+.recent-posts-container {font-family: &amp;#39;Oswald&amp;#39;, sans-serif; width: 100%;min-height: 70px;margin: 5px;padding: 0;font-size:12px;}
+ul.recent-posts-container li {padding:5px 0px;min-height:65px; list-style-type: none; margin: 0px 10px 5px 40px;}
+ul.recent-posts-container {counter-reset: countposts;list-style-type: none;}
+ul.recent-posts-container li:before {content: counter(countposts,decimal);counter-increment: countposts;z-index: 1;position:absolute; left: 15px; font-size: 16px;color: #4D4D4D;background: #F7F7F7;padding: 9px 14px; border: 1px solid #efefef;}
+.recent-posts-container a:hover{color: #000000; font-weight:bold}
+.post-date {color:#e0c0c6; font-size: 11px; }
+.recent-post-title a {font-size: 16px; text-transform: uppercase; color: #000;}
+.recent-post-title { margin: 5px 0px; }
+.recent-posts-details {border-top: 4px solid #ed3237; margin-top: 5px; padding-top: 5px;}
+.recent-posts-details a{ color: #888;}
+a.readmorelink {color: #423c3c;}
