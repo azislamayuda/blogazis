@@ -121,4 +121,7 @@ pre .deletion{color:#dc322f}
 pre .tex .formula{background:#eee8d5}
 
 /* to top */
-.zis-totop {cursor:pointer;}
+.zis-totop {.back-to-top{position:fixed;right:15px;bottom:15px;z-index:996;background:#0563bb;width:40px;height:40px;border-radius:50px;transition:all .4s;cursor:pointer}
+.back-to-top i{font-size:28px;color:#fff;line-height:0}
+.back-to-top:hover{background:#0678e3;color:#fff}
+.back-to-top.active{visibility:visible;opacity:1}
