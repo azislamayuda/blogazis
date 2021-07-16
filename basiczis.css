@@ -119,9 +119,3 @@ pre .attribute,pre .variable,pre .lisp .body,pre .smalltalk .number,pre .constan
 pre .preprocessor,pre .preprocessor .keyword,pre .shebang,pre .symbol,pre .symbol .string,pre .diff .change,pre .special,pre .attr_selector,pre .important,pre .subst,pre .cdata,pre .clojure .title,pre .css .pseudo{color:#000;font-weight:bold}
 pre .deletion{color:#dc322f}
 pre .tex .formula{background:#eee8d5}
-
-/* to top */
-.zis-totop {position:fixed;right:15px;bottom:15px;z-index:996;background:#0563bb;width:40px;height:40px;border-radius:50px;transition:all .4s;cursor:pointer}
-.zis-totop i{font-size:28px;color:#fff;line-height:0}
-.zis-totop:hover{background:#0678e3;color:#fff}
-.zis-totop.active{visibility:visible;opacity:1}
