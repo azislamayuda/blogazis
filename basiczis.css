@@ -51,8 +51,8 @@ nav .nav-items li{line-height:30px;margin:30px 0}
 nav .nav-items li a{font-size:20px}
 nav form{position:absolute;top:80px;right:50px;opacity:0;pointer-events:none;transition:top .3s ease,opacity .1s ease}
 nav form.active{top:95px;opacity:1;pointer-events:auto}
-nav form:before{position:absolute;content:&quot;&quot;;top:-13px;right:0;width:0;height:0;z-index:-1;border:10px solid transparent;border-bottom-color:#1e232b;margin:-20px 0 0}
-nav form:after{position:absolute;content:&#39;&#39;;height:60px;padding:2px;background:#1e232b;border-radius:2px;min-width:calc(100% + 20px);z-index:-2;left:50%;top:50%;transform:translate(-50%,-50%)}
+nav form:before{position:absolute;content:'';top:-13px;right:0;width:0;height:0;z-index:-1;border:10px solid transparent;border-bottom-color:#1e232b;margin:-20px 0 0}
+nav form:after{position:absolute;content:'';height:60px;padding:2px;background:#1e232b;border-radius:2px;min-width:calc(100% + 20px);z-index:-2;left:50%;top:50%;transform:translate(-50%,-50%)}
 nav .menu-icon{display:block}
 nav .search-icon,nav .menu-icon span{display:block}
 nav .menu-icon span.hide,nav .search-icon.hide{display:none}
