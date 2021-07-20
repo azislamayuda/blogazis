@@ -84,10 +84,12 @@ nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 10px;font-size:16px}
 #aturzis{margin:80px 0 5px 0}
 .search-result {padding: 0px 0px 20px 0px;}
 .link-snippet {font-size: 13px;color: #09a000;}
+.Night .link-snippet {font-size: 13px;color: #a3dfc9;}
 .item-snippet {font-size: 13px;}
-.search-result a {color: #1a0dabf;font-size:18px;}
+.search-result a {color: #1a0dab;font-size:18px;}
 .search-result a:hover {color:#1a0dab;}
 .search-result a:visited {color:#7e1a8b;}
+.Night .search-result a, .Night .search-result a:hover, .Night .search-result a:visited {color:#f5989d;}
 
 /* Related Post */
 #zisRelated{display:block;margin:20px 0;line-height:1.5em}
