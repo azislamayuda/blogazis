@@ -112,6 +112,7 @@ nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 10px;font-size:16px}
 /*Syntax Highlighter*/
 pre{padding:.8em 1em;margin:0.5em 0;background-color:#000;border:1px solid #ddd;font-size:13px;color:#fff;font-family:Consolas,Monaco,&#39;Andale Mono&#39;,&#39;Courier New&#39;,Courier,Monospace;line-height:1.4em;position:relative;white-space:pre-wrap;word-wrap:break-word;overflow:auto;max-height:200px}
 code{font-family:Consolas,&quot;Andale Mono WT&quot;,&quot;Andale Mono&quot;,&quot;Lucida Console&quot;,&quot;Lucida Sans Typewriter&quot;,&quot;DejaVu Sans Mono&quot;,&quot;Bitstream Vera Sans Mono&quot;,&quot;Liberation Mono&quot;,&quot;Nimbus Mono L&quot;,Monaco,&quot;Courier New&quot;,Courier,Monospace;font-size:13px;color:#d14}
+.Night code{color:#eee;}
 pre code{padding:0!important;color:#839496;background:none!important;border:none!important;display:block}
 pre .comment,pre .template_comment,pre .diff .header,pre .doctype,pre .pi,pre .lisp .string,pre .javadoc{color:#93a1a1;font-style:italic}
 pre .keyword,pre .winutils,pre .method,pre .addition,pre .css .tag,pre .request,pre .status,pre .nginx .title{color:#F5821E}
