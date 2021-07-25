@@ -89,7 +89,7 @@ nav .menu-icon,nav .cancel-icon,nav .search-icon{margin:0 10px;font-size:16px}
 .search-result a {color: #1a0dab;font-size:18px;}
 .search-result a:hover {color:#1a0dab;}
 .search-result a:visited {color:#7e1a8b;}
-.Night .search-result a, .Night .search-result a:hover, .Night .search-result a:visited {color:#f5989d;}
+.Night .search-result a, .Night .search-result a:hover, .Night .search-result a:visited {color:#fff;}
 
 /* Related Post */
 #zisRelated{display:block;margin:20px 0;line-height:1.5em}
