@@ -123,4 +123,4 @@ pre .preprocessor,pre .preprocessor .keyword,pre .shebang,pre .symbol,pre .symbo
 pre .deletion{color:#dc322f}
 pre .tex .formula{background:#eee8d5}
 
-.footer{padding:2.5rem 0;color:#727272;text-align:center;border-top:.05rem solid #e5e5e5}
+.footer{padding:2.5rem 0;color:#727272;text-align:center;}
