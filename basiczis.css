@@ -118,5 +118,3 @@ pre .attribute,pre .variable,pre .lisp .body,pre .smalltalk .number,pre .constan
 pre .preprocessor,pre .preprocessor .keyword,pre .shebang,pre .symbol,pre .symbol .string,pre .diff .change,pre .special,pre .attr_selector,pre .important,pre .subst,pre .cdata,pre .clojure .title,pre .css .pseudo{color:#000;font-weight:bold}
 pre .deletion{color:#dc322f}
 pre .tex .formula{background:#eee8d5}
-
-.footer{padding:2.5rem 0;color:#727272;text-align:center;}
