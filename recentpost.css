@@ -9,4 +9,4 @@ ul.recent-posts-container li:before {content: counter(countposts,decimal);counte
 .recent-posts-details {border-top: 4px solid #ed3237; margin-top: 5px; padding-top: 5px;}
 .recent-posts-details a{ color: #888;}
 a.readmorelink {color: #423c3c;}
-.Night a.readmorelink {color: #867f7f;}
+.Night a.readmorelink {color: #e6d2d2;}
