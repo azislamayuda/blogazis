@@ -185,7 +185,7 @@ function displayToc(filter) {
    var tocTool1 = 'Click to sort by title';
    var tocHead2 = 'POST DATE';
    var tocTool2 = 'Click to sort by date';
-   var tocHead3 = '#TAGS';
+   var tocHead3 = 'TAGS';
    var tocTool3 = '';
    if (sortBy == "titleasc") { 
       tocTool1 += ' (descending)';
@@ -223,12 +223,12 @@ function displayToc(filter) {
    tocTable += '<tbody>';
    for (var i = 0; i < postTitle.length; i++) {
       if (filter == '') {
-         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2"><a href="#"' + postDate[i] + '</a></td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
          numDisplayed++;
       } else {
           z = postLabels[i].lastIndexOf(filter);
           if ( z!= -1) {
-             tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+             tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2"><a href="#"' + postDate[i] + '</a></td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
              numDisplayed++;
           }
         }
@@ -236,10 +236,10 @@ function displayToc(filter) {
    tocTable += '</tbody>';
    tocTable += '</table>';
    if (numDisplayed == postTitle.length) {
-      var tocNote = '<span class="toc-note">Displaying all ' + postTitle.length + ' posts<br/></span>'; }
+      var tocNote = '<span class="toc-note my-3">Displaying all <strong>' + postTitle.length + '</strong> posts</span>'; }
    else {
-      var tocNote = '<span class="toc-note">Displaying ' + numDisplayed + ' posts labeled \'';
-      tocNote += postFilter + '\' of '+ postTitle.length + ' posts total<br/></span>';
+      var tocNote = '<span class="toc-note my-3">Displaying ' + numDisplayed + ' posts labeled \'';
+      tocNote += postFilter + '\' of '+ postTitle.length + ' posts total</span>';
    }
    tocdiv.innerHTML = tocNote + tocTable;
 } // end of displayToc
