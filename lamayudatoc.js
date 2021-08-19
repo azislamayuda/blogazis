@@ -206,7 +206,7 @@ function displayToc(filter) {
    if (postFilter != '') {
       tocTool3 = 'Click to show all posts';
    }
-   tocTable += '<table class="table">';
+   tocTable += '<table class="table table-striped">';
    tocTable += '<thead>';
    tocTable += '<tr>';
    tocTable += '<th scope="col">';
