@@ -181,11 +181,11 @@ function displayToc(filter) {
 // this function creates a three-column table and adds it to the screen
    var numDisplayed = 0;
    var tocTable = '';
-   var tocHead1 = 'JUDUL POST';
+   var tocHead1 = 'POST TITLE';
    var tocTool1 = 'Click to sort by title';
-   var tocHead2 = 'TANGGAL';
+   var tocHead2 = 'POST DATE';
    var tocTool2 = 'Click to sort by date';
-   var tocHead3 = 'TAG';
+   var tocHead3 = '#TAGS';
    var tocTool3 = '';
    if (sortBy == "titleasc") { 
       tocTool1 += ' (descending)';
@@ -206,16 +206,16 @@ function displayToc(filter) {
    if (postFilter != '') {
       tocTool3 = 'Click to show all posts';
    }
-   tocTable += '<table class="table table-striped">';
+   tocTable += '<table class="table table-striped table-hover">';
    tocTable += '<thead>';
    tocTable += '<tr>';
-   tocTable += '<th scope="col">';
+   tocTable += '<th scope="col" class="judultoc1">';
    tocTable += '<a href="javascript:toggleTitleSort();" title="' + tocTool1 + '">' + tocHead1 + '</a>';
    tocTable += '</th>';
-   tocTable += '<th scope="col">';
+   tocTable += '<th scope="col" class="judultoc2">';
    tocTable += '<a href="javascript:toggleDateSort();" title="' + tocTool2 + '">' + tocHead2 + '</a>';
    tocTable += '</th>';
-   tocTable += '<th scope="col">';
+   tocTable += '<th scope="col" class="judultoc3">';
    tocTable += '<a href="javascript:allPosts();" title="' + tocTool3 + '">' + tocHead3 + '</a>';
    tocTable += '</th>';
    tocTable += '</tr>';
@@ -223,12 +223,12 @@ function displayToc(filter) {
    tocTable += '<tbody>';
    for (var i = 0; i < postTitle.length; i++) {
       if (filter == '') {
-         tocTable += '<tr><td><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td>' + postDate[i] + '</td><td>' + postLabels[i] + '</td></tr>';
+         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col12>' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
          numDisplayed++;
       } else {
           z = postLabels[i].lastIndexOf(filter);
           if ( z!= -1) {
-             tocTable += '<tr><td><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td>' + postDate[i] + '</td><td>' + postLabels[i] + '</td></tr>';
+             tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
              numDisplayed++;
           }
         }
