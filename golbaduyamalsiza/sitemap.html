@@ -16,6 +16,195 @@
 </div>
 </div>
 <script>
-var postTitle=[],postUrl=[],postLabels=[],totalEntries=0,totalPosts=0,tocLoaded=!1,tocdiv=document.getElementById("lamayuda_toc"),tocNoteDiv=document.getElementById("toc-note");function loadtoc(json){if(console.log("JSON data loaded:",json),"entry"in json.feed){var numEntries=json.feed.entry.length;totalEntries+=numEntries,totalPosts=json.feed.openSearch$totalResults.$t,totalPosts>totalEntries&&loadMoreEntries();for(var i=0;i<numEntries;i++){var entry=json.feed.entry[i],posttitle=entry.title.$t,posturl;for(var k=0;k<entry.link.length;k++)if("alternate"==entry.link[k].rel){posturl=entry.link[k].href;break}var labels=[];if("category"in entry)for(var l=0;l<entry.category.length;l++)labels.push(entry.category[l].term);postTitle.push(posttitle),postUrl.push(posturl),postLabels.push(labels)}totalEntries==totalPosts&&(tocLoaded=!0,showToc())}}function loadMoreEntries(){var nextjsoncall=document.createElement("script");nextjsoncall.type="text/javascript";var startindex=totalEntries+1;nextjsoncall.setAttribute("src","/feeds/posts/summary?start-index="+startindex+"&max-results=500&alt=json-in-script&callback=loadtoc"),tocdiv.appendChild(nextjsoncall)}function displayToc(){var categories=[...new Set(postLabels.flat())],listItems=postTitle.map((title,idx)=>`<li class="list-group-item" data-index="${idx}" data-title="${title.toLowerCase()}" data-category="${postLabels[idx].map(label=>label.toLowerCase().replace(/ /g,"_")).join(" ")}"><span class="list-number">${idx+1}</span>. <a href="${postUrl[idx]}" target="_blank" rel="noopener noreferrer">${title}</a></li>`).join(""),tocTable=`<div class="d-flex justify-content-center align-items-center mb-3"><div class="me-3"><label for="sort_labels" class="form-label">Category</label><select id="sort_labels" class="form-select"><option value='all'>All</option>${categories.map(category=>`<option value="${category.toLowerCase().replace(/ /g,"_")}">${category}</option>`).join("")}</select></div><div class="me-3"><label for="sort_by" class="form-label">Sort By</label><select id="sort_by" class="form-select"><option value="a_to_z">A to Z</option><option value="z_to_a">Z to A</option></select></div><button id="reset_filters" class="btn btn-secondary mt-4">Reset Filters</button></div><ol id="sitemap_list" class="list-group list-group-flush">${listItems}</ol><style>.list-group-item.hidden{display:none}.list-number{margin-right:.5em}</style>`;tocNoteDiv.innerHTML=`Displaying all <strong>${postTitle.length}</strong> posts<br/>`,tocdiv.innerHTML=tocTable;const sortBy=document.querySelector("#sort_by"),sortLabels=document.querySelector("#sort_labels"),resetFilters=document.querySelector("#reset_filters"),sitemapList=document.getElementById("sitemap_list"),originalOrder=Array.from(sitemapList.getElementsByTagName("li")),updateListNumbers=()=>{Array.from(sitemapList.getElementsByTagName("li")).filter(item=>!item.classList.contains("hidden")).forEach((item,index)=>{item.querySelector(".list-number").textContent=index+1})},updateTocNote=category=>{"all"===category?tocNoteDiv.innerHTML=`Displaying all <strong>${postTitle.length}</strong> posts<br/>`:tocNoteDiv.innerHTML=`Displaying <strong>${Array.from(sitemapList.getElementsByTagName("li")).filter(item=>!item.classList.contains("hidden")).length}</strong> post${1<Array.from(sitemapList.getElementsByTagName("li")).filter(item=>!item.classList.contains("hidden")).length?"s":""} - label #<strong>${category.replace(/_/g," ")}</strong><br/>`};sortBy.addEventListener("change",()=>{Array.from(sitemapList.getElementsByTagName("li")).sort((a,b)=>{var titleA=a.getAttribute("data-title"),titleB=b.getAttribute("data-title");return"z_to_a"===sortBy.value?titleB.localeCompare(titleA):titleA.localeCompare(titleB)}).forEach(item=>sitemapList.appendChild(item)),updateListNumbers()}),sortLabels.addEventListener("change",()=>{sitemapList.querySelectorAll("li").forEach(item=>{item.classList.toggle("hidden","all"!==sortLabels.value&&!item.getAttribute("data-category").includes(sortLabels.value))}),updateListNumbers(),updateTocNote(sortLabels.value)}),resetFilters.addEventListener("click",()=>{originalOrder.forEach(item=>sitemapList.appendChild(item)),sortLabels.value="all",sortBy.value="a_to_z",sitemapList.querySelectorAll("li").forEach(item=>item.classList.remove("hidden")),updateListNumbers(),updateTocNote("all")})}function showToc(){displayToc(),document.querySelector(".loader").style.display="none"}document.addEventListener("DOMContentLoaded",function(){document.querySelector(".loader").style.display="block"});
+document.addEventListener("DOMContentLoaded", () => {
+  const tocDiv = document.getElementById("lamayuda_toc");
+  const tocNoteDiv = document.getElementById("toc-note");
+  const loader = document.querySelector(".loader");
+  
+  if (loader) loader.style.display = "block";
+
+  let allPosts = [];
+  const state = {
+    search: "",
+    category: "all",
+    sortBy: "a_to_z"
+  };
+
+  // 1. Fetch seluruh artikel melalui standar modern fetch (alt=json) dengan paginasi
+  const fetchAllPosts = async () => {
+    let startIndex = 1;
+    const maxResults = 500;
+    let totalPosts = 0;
+
+    try {
+      do {
+        const response = await fetch(`/feeds/posts/summary?start-index=${startIndex}&max-results=${maxResults}&alt=json`);
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        const feed = data.feed;
+
+        if (!feed || !feed.entry) break;
+
+        totalPosts = Number(feed.openSearch$totalResults?.$t || 0);
+
+        feed.entry.forEach((entry, idx) => {
+          const title = entry.title?.$t || "Untitled";
+          const altLink = entry.link?.find(l => l.rel === "alternate");
+          const url = altLink ? altLink.href : "#";
+          const categories = entry.category ? entry.category.map(c => c.term) : [];
+
+          allPosts.push({
+            id: startIndex + idx,
+            title,
+            url,
+            categories
+          });
+        });
+
+        startIndex += feed.entry.length;
+      } while (allPosts.length < totalPosts);
+
+      if (loader) loader.style.display = "none";
+      initTocUI();
+    } catch (error) {
+      console.error("Gagal memuat Table of Contents:", error);
+      if (loader) loader.style.display = "none";
+      if (tocDiv) {
+        tocDiv.innerHTML = `<div class="alert alert-danger text-center my-4">
+          Gagal memuat daftar artikel. Silakan periksa koneksi atau muat ulang halaman.
+        </div>`;
+      }
+    }
+  };
+
+  // 2. Inisialisasi UI Kontrol (Search, Category, Sort, Reset)
+  const initTocUI = () => {
+    if (!tocDiv) return;
+
+    // Ambil daftar kategori unik yang diurutkan abjad
+    const categoriesSet = new Set();
+    allPosts.forEach(post => post.categories.forEach(cat => categoriesSet.add(cat)));
+    const sortedCategories = Array.from(categoriesSet).sort((a, b) => a.localeCompare(b));
+
+    tocDiv.innerHTML = `
+      <div class="row g-3 align-items-end mb-4">
+        <div class="col-12 col-md-4">
+          <label for="search_input" class="form-label fw-medium">Search</label>
+          <input type="text" id="search_input" class="form-control" placeholder="Cari judul artikel...">
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <label for="sort_labels" class="form-label fw-medium">Category</label>
+          <select id="sort_labels" class="form-select">
+            <option value="all">All (${allPosts.length})</option>
+            ${sortedCategories.map(cat => `<option value="${escapeHtml(cat)}">${escapeHtml(cat)}</option>`).join("")}
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <label for="sort_by" class="form-label fw-medium">Sort By</label>
+          <select id="sort_by" class="form-select">
+            <option value="a_to_z">A to Z</option>
+            <option value="z_to_a">Z to A</option>
+            <option value="oldest">Oldest First</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-2 d-grid">
+          <button id="reset_filters" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+      <ol id="sitemap_list" class="list-group list-group-flush"></ol>
+      <style>
+        .list-number { margin-right: .5em; font-weight: 500; }
+        .toc-badge { font-size: 0.75em; }
+      </style>
+    `;
+
+    // Pasang Event Listeners
+    const searchInput = document.getElementById("search_input");
+    const sortLabels = document.getElementById("sort_labels");
+    const sortBy = document.getElementById("sort_by");
+    const resetBtn = document.getElementById("reset_filters");
+
+    searchInput?.addEventListener("input", e => {
+      state.search = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    sortLabels?.addEventListener("change", e => {
+      state.category = e.target.value;
+      render();
+    });
+
+    sortBy?.addEventListener("change", e => {
+      state.sortBy = e.target.value;
+      render();
+    });
+
+    resetBtn?.addEventListener("click", () => {
+      state.search = "";
+      state.category = "all";
+      state.sortBy = "a_to_z";
+      if (searchInput) searchInput.value = "";
+      if (sortLabels) sortLabels.value = "all";
+      if (sortBy) sortBy.value = "a_to_z";
+      render();
+    });
+
+    // Render pertama kali
+    render();
+  };
+
+  // 3. Mesin Render berbasis State super cepat (O(1) DOM update)
+  const render = () => {
+    const sitemapList = document.getElementById("sitemap_list");
+    if (!sitemapList) return;
+
+    // Filter by search & category
+    let filtered = allPosts.filter(post => {
+      const matchSearch = !state.search || post.title.toLowerCase().includes(state.search);
+      const matchCategory = state.category === "all" || post.categories.includes(state.category);
+      return matchSearch && matchCategory;
+    });
+
+    // Sort in memory
+    filtered.sort((a, b) => {
+      if (state.sortBy === "a_to_z") return a.title.localeCompare(b.title);
+      if (state.sortBy === "z_to_a") return b.title.localeCompare(a.title);
+      if (state.sortBy === "newest") return b.id - a.id;
+      if (state.sortBy === "oldest") return a.id - b.id;
+      return 0;
+    });
+
+    // Update Note Di Atas
+    if (tocNoteDiv) {
+      if (state.category === "all" && !state.search) {
+        tocNoteDiv.innerHTML = `Displaying all <strong>${filtered.length}</strong> posts<br/>`;
+      } else {
+        const catInfo = state.category !== "all" ? ` - label #<strong>${escapeHtml(state.category)}</strong>` : "";
+        const searchInfo = state.search ? ` matching "<strong>${escapeHtml(state.search)}</strong>"` : "";
+        tocNoteDiv.innerHTML = `Displaying <strong>${filtered.length}</strong> post${filtered.length !== 1 ? "s" : ""}${catInfo}${searchInfo}<br/>`;
+      }
+    }
+
+    // Render HTML List
+    if (filtered.length === 0) {
+      sitemapList.innerHTML = `<li class="list-group-item text-center py-4 text-muted">Tidak ada artikel yang sesuai kriteria pencarian Anda.</li>`;
+      return;
+    }
+
+    sitemapList.innerHTML = filtered.map((post, idx) => `
+      <li class="list-group-item d-flex flex-wrap justify-content-between align-items-center gap-2 py-2">
+        <div>
+          <span class="list-number">${idx + 1}.</span>
+          <a href="${post.url}" target="_blank" rel="noopener noreferrer" class="text-decoration-none fw-medium">${escapeHtml(post.title)}</a>
+        </div>
+        ${post.categories.length ? `<div class="d-flex flex-wrap gap-1">${post.categories.slice(0, 3).map(cat => `<span class="badge bg-body-secondary text-body-secondary border toc-badge">${escapeHtml(cat)}</span>`).join("")}</div>` : ""}
+      </li>
+    `).join("");
+  };
+
+  const escapeHtml = str => String(str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+
+  fetchAllPosts();
+});
 </script>
-<script src="/feeds/posts/summary?max-results=500&alt=json-in-script&callback=loadtoc" type="text/javascript"></script>
