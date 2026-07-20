@@ -2670,7 +2670,6 @@ document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementByI
 </b:if>
 <b:if cond='data:view.isPost'>
 <script defer='defer' src='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js'>//</script>
-<script defer='defer' src='//cdn.jsdelivr.net/gh/azislamayuda/blogazis@main/seuneu.js'>//</script>
 </b:if>
 &lt;!--</body>--&gt;&lt;/body&gt;
 </html>
