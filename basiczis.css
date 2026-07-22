@@ -1,6 +1,6 @@
 body a:link, body a:visited {text-decoration:none}
 
-/* dark */
+/* darkmode zis */
 .modedark{z-index:99999;}
 .modedark svg{width:24px;height:24px;vertical-align:-5px;background-repeat:no-repeat!important;content:&#39;&#39;;}
 .modedark svg path{fill:#fff;}
